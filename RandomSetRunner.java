@@ -51,19 +51,13 @@ class RandomizedSet {
    public boolean remove(int val) {
        boolean isInMap = this.map.containsKey(val);
        if (isInMap) {
-        //    if (this.array.size() > 1) {
-                int valIndexInArray = this.map.get(val);
-                int lastIndex = this.array.size() - 1;
-                int lastVal = this.array.get(lastIndex);
-                this.array.set(valIndexInArray, lastVal);
-                this.array.remove(lastIndex);
-                this.map.put(lastVal, valIndexInArray);
-                this.map.remove(val);
-        //    } else { // size == 1
-        //         this.array.remove(0);
-        //         this.map.remove(val);
-        //    }
-           
+            int valIndexInArray = this.map.get(val);
+            int lastIndex = this.array.size() - 1;
+            int lastVal = this.array.get(lastIndex);
+            this.array.set(valIndexInArray, lastVal);
+            this.array.remove(lastIndex);
+            this.map.put(lastVal, valIndexInArray);
+            this.map.remove(val);
        }
        return isInMap;
    }
