@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.spi.CurrencyNameProvider;
 import java.io.*;
 import java.lang.*;
 
@@ -17,56 +18,40 @@ public class ZeroOneMatrix_V2 {
 
    public static int[][] solve(int[][] matrix) {
       int[][] distances = new int[matrix.length][matrix[0].length];
+      Queue<int[]> queue = new LinkedList<>();
+      int rows = matrix.length;
+      int cols = matrix[0].length;
+      boolean[][] isVisited = new boolean[rows][cols];
+      MatrixBoundsCheck matrixBoundsCheck = new MatrixBoundsCheck(rows, cols);
 
-      for (int i = 0; i < matrix.length; i++) {
-         for (int j = 0; j < matrix[i].length; j++) {
-            distances[i][j] = findMinDistanceToZero(i, j, matrix);
-         }
-      }
-
-      return distances;
-   }
-
-   public static int findMinDistanceToZero(int x, int y, int[][] matrix) {
-      int min = Integer.MAX_VALUE;
-      Queue<Point> queue = new LinkedList<>();
-      MatrixBoundsCheck matrixBoundsCheck = new MatrixBoundsCheck(matrix.length - 1, matrix[0].length - 1);
-      Set<Point> visistedPoints = new HashSet<>();
-
-      addPointAndOffsetsToQueue(queue, x, y, matrixBoundsCheck, visistedPoints);
-      while (!queue.isEmpty()) {
-         Point point = queue.poll();
-         visistedPoints.add(point);
-
-         if (matrix[point.getX()][point.getY()] == 0) {
-            int thisDis = rectangularDistance(x, y, point.getX(), point.getY());
-            if (thisDis < min) {
-               min = thisDis;
+      // find all zeros and add to queue
+      for (int i = 0; i < rows; i++) {
+         for (int j = 0; j < cols; j++) {
+            if (matrix[i][j] == 0) {
+               queue.offer(new int[]{i,j});
+               distances[i][j] = 0;
+               isVisited[i][j] = true;
             }
-            return min;
-
-         } else {
-            addPointAndOffsetsToQueue(queue, point.getX(), point.getY(), matrixBoundsCheck, visistedPoints);
          }
       }
 
-      return min;
-   }
-
-   public static void addPointAndOffsetsToQueue(Queue<Point> queue, int x, int y, MatrixBoundsCheck matrixBoundsCheck, Set<Point> visistedPoints) {
-      int[][] offsets = {{0,0},{-1,0},{1,0},{0,-1},{0,1}};
-      for (int[] off : offsets) {
-
-         boolean isGoodIndex = matrixBoundsCheck.isIndexInMatrix(thisX, thisY);
-         boolean isVisited = visistedPoints.contains(new Point(thisX, thisY));
-         if (isGoodIndex && !isVisited) {
-            queue.offer(new Point(thisX, thisY));
+      // Do BFS on the queue
+      int[][] offsets = {{-1,0},{1,0},{0,-1},{0,1}};
+      while (!queue.isEmpty()) {
+         int[] currentPoint = queue.poll();
+         int x = currentPoint[0];
+         int y = currentPoint[1];
+         for (int[] off : offsets) {
+            int thisX = x + off[0];
+            int thisY = y + off[1];
+            if (matrixBoundsCheck.isIndexInMatrix(thisX, thisY) && !isVisited[thisX][thisY]) {
+               isVisited[thisX][thisY] = true;
+               distances[thisX][thisY] = distances[x][y] + 1;
+               queue.offer(new int[]{thisX,thisY});
+            }
          }
       }
-   }
-
-   public static int rectangularDistance(int x1, int y1, int x2, int y2) {
-      return Math.abs((x2 - x1)) + Math.abs((y2 - y1));
+      return distances;
    }
 
    public static void print2dArray(int[][] arr) {
@@ -83,36 +68,12 @@ class MatrixBoundsCheck {
    private final int minX = 0;
    private final int minY = 0;
 
-   public MatrixBoundsCheck(int maxX, int maxY) {
-      this.maxX = maxX;
-      this.maxY = maxY;
+   public MatrixBoundsCheck(int rows, int cols) {
+      this.maxX = rows - 1;
+      this.maxY = cols - 1;
    }
 
    public boolean isIndexInMatrix(int x, int y) {
       return ( (x >= minX && x <= maxX) && (y >= minY && y <= maxY));
-   }
-}
-
-class Point {
-   private final int mX;
-   private final int mY;
-   private final int mDis;
-
-   public Point(int x, int y, int dis) {
-      mX = x;
-      mY = y;
-      mDis = dis;
-   }
-
-   public int getX() {
-      return mX;
-   }
-
-   public int getY() {
-      return mY;
-   }
-
-   public int getDis() {
-      return mDis;
    }
 }
