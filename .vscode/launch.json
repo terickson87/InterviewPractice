@@ -6,6 +6,13 @@
    "configurations": [
       {
          "type": "java",
+         "name": "Launch RandomizedCollectionRunner",
+         "request": "launch",
+         "mainClass": "RandomizedCollectionRunner",
+         "projectName": "Interview Practice_76c5a981"
+      },
+      {
+         "type": "java",
          "name": "Debug (Launch) - Current File",
          "request": "launch",
          "mainClass": "${file}"

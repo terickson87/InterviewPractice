@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 import java.lang.*;
 
-public class ZeroOneMatrix {
+public class ZeroOneMatrix_V2 {
    public static void main(String[] args) {
       int[][] arr = {{0,0,0}, {0,1,0}, {0,0,0}};
       print2dArray(arr);
