@@ -6,37 +6,46 @@ public class WordBreak {
    public static void main(String[] args) {
       String s = "leetcode";
       List<String> dict = Arrays.asList("leet","code");
-      System.out.println(solve(s, dict));
+      boolean canSplit = solve(s, dict);
+      System.out.println(canSplit);
 
       s = "applepenapple";
       dict = Arrays.asList("apple","pen");
-      System.out.println(solve(s, dict));
+      canSplit = solve(s, dict);
+      System.out.println(canSplit);
 
       s = "catsandog";
       dict = Arrays.asList("cats", "dog", "sand", "and", "cat");
-      System.out.println(solve(s, dict));
+      canSplit = solve(s, dict);
+      System.out.println(canSplit);
 
       s = "cars";
       dict = Arrays.asList("car","ca","rs");
-      System.out.println(solve(s, dict));
-   }
-
-   public static boolean solve_bfs() {
-      return false;
+      canSplit = solve(s, dict);
+      System.out.println(canSplit);
    }
    
    public static boolean solve(String string, List<String> wordDict) {
-      Set<Integer> memo_fail = new HashSet<>();
-      return helper(0, memo_fail, string, wordDict);
+      return helper(0, string, wordDict);
    }
 
-   public static boolean helper(int index, Set<Integer> memo_fail, String string, List<String> wordDict) {
+   public static boolean helper(int index, String string, List<String> wordDict) {
+
       if (index == string.length()) {
          return true;
       }
 
-      if (memo_fail.contains(index)) {
-         return false;
+      String thisString = string.substring(index);
+
+      for (String word : wordDict){
+         if (thisString.startsWith(word)){
+            int wordLength = word.length();
+            int newIndex = index + wordLength;
+            boolean recursive = helper(newIndex, string, wordDict);
+            if (recursive) {
+               return true;
+            }
+         }
       }
 
       return false;
