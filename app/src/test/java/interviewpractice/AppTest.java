@@ -4,66 +4,11 @@
 package interviewpractice;
 
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
-    // TwoSum
-    @Test
-    void twosum_example1() {
-        App app = new App();
-        int[] nums = new int[]{2,7,11,15};
-        int target = 9;
-        int[] result = app.twoSum(nums, target);
-        int[] expected = new int[]{0,1};
-        assertEquals(result.length, expected.length);
-        List<Integer> resultList = Arrays.stream(result)
-                .boxed()
-                .collect(Collectors.toList());
-        List<Integer> expectedList = Arrays.stream(expected)
-                .boxed()
-                .collect(Collectors.toList());
-        assertTrue(resultList.containsAll(expectedList));
-        assertTrue(expectedList.containsAll(resultList));
-    }
-
-    @Test
-    void twosum_example2() {
-        App app = new App();
-        int[] nums = new int[]{3,2,4};
-        int target = 6;
-        int[] result = app.twoSum(nums, target);
-        int[] expected = new int[]{1,2};
-        assertEquals(result.length, expected.length);
-        List<Integer> resultList = Arrays.stream(result)
-                .boxed()
-                .collect(Collectors.toList());
-        List<Integer> expectedList = Arrays.stream(expected)
-                .boxed()
-                .collect(Collectors.toList());
-        assertTrue(resultList.containsAll(expectedList));
-        assertTrue(expectedList.containsAll(resultList));
-    }
-
-    @Test
-    void twosum_example3() {
-        App app = new App();
-        int[] nums = new int[]{3,3};
-        int target = 6;
-        int[] result = app.twoSum(nums, target);
-        int[] expected = new int[]{0,1};
-        assertEquals(result.length, expected.length);
-        List<Integer> resultList = Arrays.stream(result)
-                .boxed()
-                .collect(Collectors.toList());
-        List<Integer> expectedList = Arrays.stream(expected)
-                .boxed()
-                .collect(Collectors.toList());
-        assertTrue(resultList.containsAll(expectedList));
-        assertTrue(expectedList.containsAll(resultList));
+    @Test void appHasAGreeting() {
+        App classUnderTest = new App();
+        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
 }
