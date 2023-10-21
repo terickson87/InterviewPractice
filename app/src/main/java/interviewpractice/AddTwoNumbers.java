@@ -36,45 +36,28 @@ class ListNode {
 
 public class AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode tail = dummyHead;
+        int carry = 0;
 
-        int l1val = convertListNodeToInt(l1);
-        int l2val = convertListNodeToInt(l2);
-        int resultVal = l1val + l2val;
-        ListNode result = convertIntToListNode(resultVal);
+        while (l1 != null || l2 != null || carry != 0) {
+            int digit1 = (l1 != null) ? l1.val : 0;
+            int digit2 = (l2 != null) ? l2.val : 0;
 
-        return result;
-    }
+            int sum = digit1 + digit2 + carry;
+            int digit = sum % 10;
+            carry = sum / 10;
 
-    public Integer convertListNodeToInt(ListNode listNode) {
-        ListNode current = listNode;
-        int resultVal = 0;
-        int placeVal = 1;
-        while (current != null) {
-            resultVal += current.val*placeVal;
-            placeVal *= 10;
-            current = current.next;
+            ListNode newNode = new ListNode(digit);
+            tail.next = newNode;
+            tail = tail.next;
+
+            l1 = (l1 != null) ? l1.next : null;
+            l2 = (l2 != null) ? l2.next : null;
         }
-        return resultVal;
-    }
 
-    public ListNode convertIntToListNode(int resultVal) {
-        
-        int val = resultVal;
-        ListNode resultList = new ListNode();
-        ListNode current = resultList;
-        // int mod = resultVal % 10;
-        // ListNode resultList = new ListNode(mod);
-        // val = val / 10;
-        do {
-            int mod = val % 10;
-            current.val = mod;
-            val = val / 10;
-            if (val > 0) {
-                current.next = new ListNode();
-                current = current.next;
-            }
-        } while (val > 0);
-
-        return resultList;
+        ListNode result = dummyHead.next;
+        dummyHead.next = null;
+        return result;
     }
 }
