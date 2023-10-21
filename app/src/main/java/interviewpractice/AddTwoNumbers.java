@@ -26,18 +26,18 @@ Output: [8,9,9,9,0,0,0,1]
  */
 
  // Definition for singly-linked list.
-class ListNode {
+class A2N_ListNode {
     int val;
-    ListNode next;
-    ListNode() {}
-    ListNode(int val) { this.val = val; }
-    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    A2N_ListNode next;
+    A2N_ListNode() {}
+    A2N_ListNode(int val) { this.val = val; }
+    A2N_ListNode(int val, A2N_ListNode next) { this.val = val; this.next = next; }
 }
 
 public class AddTwoNumbers {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode tail = dummyHead;
+    public A2N_ListNode addTwoNumbers(A2N_ListNode l1, A2N_ListNode l2) {
+        A2N_ListNode dummyHead = new A2N_ListNode(0);
+        A2N_ListNode tail = dummyHead;
         int carry = 0;
 
         while (l1 != null || l2 != null || carry != 0) {
@@ -51,7 +51,7 @@ public class AddTwoNumbers {
             carry = sum / 10;
 
             // Add the new digit
-            ListNode newNode = new ListNode(digit);
+            A2N_ListNode newNode = new A2N_ListNode(digit);
 
             // Move the tail pointer
             tail.next = newNode;
@@ -62,7 +62,7 @@ public class AddTwoNumbers {
             l2 = (l2 != null) ? l2.next : null;
         }
 
-        ListNode result = dummyHead.next;
+        A2N_ListNode result = dummyHead.next;
         dummyHead.next = null;
         return result;
     }
