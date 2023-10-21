@@ -2,6 +2,8 @@ package interviewpractice;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 class Io2LL_ListNode {
      int val;
@@ -20,6 +22,20 @@ class Io2LL_ListNode {
         }
         val = dummyHead.next.val;
         next = dummyHead.next.next;
+     }
+     Io2LL_ListNode(Io2LL_ListNode head1, Io2LL_ListNode head2) {
+        Io2LL_ListNode ptr = head1;
+
+        while (ptr != null) {
+            if (ptr.next == null) {
+                ptr.next = head2;
+                break;
+            }
+            ptr = ptr.next;
+        }
+
+        val = head1.val;
+        next = head1.next;
      }
  }
  
@@ -56,5 +72,28 @@ public class IntersectionOfTwoLinkedLists {
         }
 
         return dummyHead.next;
+    }
+
+     public Io2LL_ListNode getIntersectionNode_2(Io2LL_ListNode headA, Io2LL_ListNode headB) {
+        // Create a hash set to store nodes from headA
+        Set<Io2LL_ListNode> nodeSet = new HashSet<>();
+
+        // Traverse and store nodes from headA in the hash set
+        Io2LL_ListNode nodeA = headA;
+        while (nodeA != null) {
+            nodeSet.add(nodeA);
+            nodeA = nodeA.next;
+        }
+
+        // Traverse headB and check if any of its nodes are in the hash set
+        Io2LL_ListNode nodeB = headB;
+        while (nodeB != null) {
+            if (nodeSet.contains(nodeB)) {
+                return nodeB; // Intersection found
+            }
+            nodeB = nodeB.next;
+        }
+
+        return null; // No intersection found
     }
 }
