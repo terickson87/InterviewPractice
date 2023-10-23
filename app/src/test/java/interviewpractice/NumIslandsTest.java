@@ -75,4 +75,85 @@ public class NumIslandsTest {
         int result = numIslands.numIslands(grid);
         assertEquals(expected, result);
     }
+
+    @Test
+    void example39() {
+        char [][] grid = {
+            {'1','1','1','1','1','0','1','1','1','1'},
+            {'1','0','1','0','1','1','1','1','1','1'},
+            {'0','1','1','1','0','1','1','1','1','1'},
+            {'1','1','0','1','1','0','0','0','0','1'},
+            {'1','0','1','0','1','0','0','1','0','1'},
+            {'1','0','0','1','1','1','0','1','0','0'},
+            {'0','0','1','0','0','1','1','1','1','0'},
+            {'1','0','1','1','1','0','0','1','1','1'},
+            {'1','1','1','1','1','1','1','1','0','1'},
+            {'1','0','1','1','1','1','1','1','1','0'}
+        };
+        int expected = 2;
+        NumIslands numIslands = new NumIslands();
+        int result = numIslands.numIslands(grid);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void example1_numIslands2() {
+        char [][] grid = {
+            {'1','1','1','1','0'},
+            {'1','1','0','1','0'},
+            {'1','1','0','0','0'},
+            {'0','0','0','0','0'}
+        };
+        int expected = 1;
+        NumIslands numIslands = new NumIslands();
+        int result = numIslands.numIslands2(grid);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void example2_numIslands2() {
+        char [][] grid = {
+            {'1','1','0','0','0'},
+            {'1','1','0','0','0'},
+            {'0','0','1','0','0'},
+            {'0','0','0','1','1'}
+        };
+        int expected = 3;
+        NumIslands numIslands = new NumIslands();
+        int result = numIslands.numIslands2(grid);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void example34_numIslands2() {
+        char [][] grid = {
+            {'1','1','1'},
+            {'0','1','0'},
+            {'1','1','1'}
+        };
+        int expected = 1;
+        NumIslands numIslands = new NumIslands();
+        int result = numIslands.numIslands2(grid);
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void example39_numIslands2() {
+        char [][] grid = {
+            {'1','1','1','1','1','0','1','1','1','1'},
+            {'1','0','1','0','1','1','1','1','1','1'},
+            {'0','1','1','1','0','1','1','1','1','1'},
+            {'1','1','0','1','1','0','0','0','0','1'},
+            {'1','0','1','0','1','0','0','1','0','1'},
+            {'1','0','0','1','1','1','0','1','0','0'},
+            {'0','0','1','0','0','1','1','1','1','0'},
+            {'1','0','1','1','1','0','0','1','1','1'},
+            {'1','1','1','1','1','1','1','1','0','1'},
+            {'1','0','1','1','1','1','1','1','1','0'}
+        };
+        int expected = 2;
+        NumIslands numIslands = new NumIslands();
+        int result = numIslands.numIslands2(grid);
+        assertEquals(expected, result);
+    }
 }

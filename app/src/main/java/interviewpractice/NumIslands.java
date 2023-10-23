@@ -164,4 +164,48 @@ public class NumIslands {
         boolean result = (point.x >= 0 && point.x < xMax && point.y >= 0 && point.y < yMax) ? true : false;
         return result;
     }
+
+    public int iLength;
+    public int jLength;
+
+    public int numIslands2(char[][] grid) {
+        iLength = grid.length;
+        jLength = grid[0].length;
+        int numIslands = 0;
+        for (int i = 0; i < iLength; i++) {
+            for (int j = 0; j < jLength; j++) {
+                if (grid[i][j] == LAND) {
+                    numIslands++;
+                    grid = markAsWaterAndExploreIfIsPartOfIsland(grid, i, j);
+                }
+            }
+        }
+        return numIslands;
+    }
+
+    public char[][] markAsWaterAndExploreIfIsPartOfIsland(char[][] grid, int i, int j) {
+        if (isPartOfIsland(grid, i, j)) {
+            grid[i][j] = WATER;
+            grid = markAsWaterAndExploreIfIsPartOfIsland(grid, i+1, j);
+            grid = markAsWaterAndExploreIfIsPartOfIsland(grid, i+1, j);
+            grid = markAsWaterAndExploreIfIsPartOfIsland(grid, i, j+1);
+            grid = markAsWaterAndExploreIfIsPartOfIsland(grid, i, j-1);
+        }
+
+        return grid;
+    }
+
+    public boolean isPartOfIsland(char[][] grid, int i, int j) {
+        boolean isInGrid = i>=0 && i<iLength && j>=0 && j<jLength;
+        if (isInGrid) {
+            boolean isLand = grid[i][j] == LAND;
+            if (isLand) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
