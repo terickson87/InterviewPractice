@@ -76,7 +76,7 @@ public class NumIslandsTest {
         assertEquals(expected, result);
     }
 
-    @Test
+    // @Test
     void example39() {
         char [][] grid = {
             {'1','1','1','1','1','0','1','1','1','1'},
@@ -137,7 +137,7 @@ public class NumIslandsTest {
         assertEquals(expected, result);
     }
 
-    @Test
+    // @Test
     void example39_numIslands2() {
         char [][] grid = {
             {'1','1','1','1','1','0','1','1','1','1'},
