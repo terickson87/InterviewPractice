@@ -1,7 +1,5 @@
 package interviewpractice;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -41,8 +39,8 @@ class Io2LL_ListNode {
  
 public class IntersectionOfTwoLinkedLists {
     public Io2LL_ListNode getIntersectionNode(Io2LL_ListNode headA, Io2LL_ListNode headB) {
-        HashMap<Integer, Io2LL_ListNode> arrayBValNodeMap = new HashMap<>();
-        ArrayList<Integer> arrayB = new ArrayList<>();
+        // HashMap<Integer, Io2LL_ListNode> arrayBValNodeMap = new HashMap<>();
+        // ArrayList<Integer> arrayB = new ArrayList<>();
         
         Io2LL_ListNode lA = headA;
         while (lA != null) {

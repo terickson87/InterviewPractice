@@ -1,8 +1,6 @@
 package interviewpractice.hackerrank;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.PrintStream;
 
 import org.junit.jupiter.api.AfterEach;

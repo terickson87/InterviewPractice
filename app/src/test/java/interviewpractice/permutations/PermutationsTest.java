@@ -50,6 +50,7 @@ public class PermutationsTest {
         assertTrue(containsAll2D(result, expected));
     }
 
+    @SuppressWarnings("unused")
     public boolean containsAll2D(List<List<Integer>> first, List<List<Integer>> second) {
         for (List<Integer> iFirst : first) {
             for (List<Integer> iSecond : second) {
